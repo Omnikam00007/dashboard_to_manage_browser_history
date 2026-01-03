@@ -1,75 +1,76 @@
-# React + TypeScript + Vite
+# ContextHub: Visual History & Tabs
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ContextHub transforms your browser history into a rich, visual workspace. Instead of a dry list of URLs, experience your browsing journey with context—images, descriptions, and snippets automatically extracted from the pages you visit.
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Visual History Dashboard**: Browse your history as rich cards with preview images and descriptions.
+- **Smart Context Extraction**: Automatically captures:
+  - Page Title & Headings
+  - Meta Descriptions
+  - Open Graph Images
+  - Relevant Text Snippets
+- **Privacy-First**: All data is stored locally in your browser using IndexedDB. No data leaves your machine.
+- **Search & Filter**: Quickly find past content with a powerful search interface.
+- **Modern UI**: Built with a sleek, responsive design using TailwindCSS and Framer Motion.
 
-## React Compiler
+## 🛠️ Tech Stack
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+- **Framework**: [React 19](https://react.dev/) + [Vite](https://vitejs.dev/)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [TailwindCSS](https://tailwindcss.com/)
+- **Storage**: [Dexie.js](https://dexie.org/) (IndexedDB wrapper)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
 
-Note: This will impact Vite dev & build performances.
+## 🚀 Getting Started
 
-## Expanding the ESLint configuration
+### Prerequisites
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Node.js (v18 or later)
+- npm or yarn
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Installation
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Omnikam00007/dashboard_to_manage_browser_history.git
+   cd dashboard_to_manage_browser_history
+   ```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Build the extension**
+   ```bash
+   npm run build
+   ```
+   This will generate a `dist` folder containing the production build.
+
+### Loading into Chrome/Edge
+
+1. Open your browser and navigate to `chrome://extensions/`.
+2. Enable **Developer mode** in the top right corner.
+3. Click **Load unpacked**.
+4. Select the `dist` directory generated in the previous step.
+5. The extension is now installed! Click the extension icon to open the dashboard.
+
+## 💻 Development
+
+To work on the project with hot reloading (for UI components):
+
+```bash
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Note: For testing extension-specific features (like `chrome.runtime` messaging), you must rebuild and reload the extension in the browser.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🤝 Contributing
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📄 License
+
+[MIT](LICENSE)
