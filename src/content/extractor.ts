@@ -62,8 +62,13 @@ const pageData: PageContext = extractPageContext();
 chrome.runtime.sendMessage({
   type: "SAVE_CONTEXT",
   data: pageData
-}, () => {
+}, (response) => {
   if (chrome.runtime.lastError) {
-    console.error("Context extraction failed:", chrome.runtime.lastError);
+    console.error("Context extraction failed (runtime error):", chrome.runtime.lastError);
+  } else if (response && !response.success) {
+    console.error("Context extraction failed (background error):", response.error);
+  } else {
+    // Optional: Log success if needed, or just be silent on success
+    // console.log("Context saved successfully"); 
   }
 });

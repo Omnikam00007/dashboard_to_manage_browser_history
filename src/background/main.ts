@@ -3,7 +3,7 @@ import { db, type PageHistory } from '../lib/db';
 chrome.runtime.onMessage.addListener((
   message: { type: string; data: PageHistory },
   sender: chrome.runtime.MessageSender,
-  _sendResponse: (response?: unknown) => void
+  sendResponse: (response?: unknown) => void
 ) => {
   if (message.type === "SAVE_CONTEXT" && sender.tab?.url) {
     const pageData: PageHistory = {
@@ -13,7 +13,14 @@ chrome.runtime.onMessage.addListener((
       timestamp: Date.now()
     };
 
-    saveToDatabase(pageData);
+    saveToDatabase(pageData)
+      .then(() => {
+        sendResponse({ success: true });
+      })
+      .catch((err) => {
+        console.error("Failed to save context:", err);
+        sendResponse({ success: false, error: err.message });
+      });
   }
   return true;
 });
