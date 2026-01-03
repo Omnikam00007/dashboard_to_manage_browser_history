@@ -1,0 +1,44 @@
+{
+  "manifest_version": 3,
+  "name": "ContextHub: Visual History & Tabs",
+  "version": "1.0.0",
+  "description": "Organizes your browser history into a clean, contextual visual workspace.",
+  "permissions": [
+    "tabs",
+    "history",
+    "storage",
+    "scripting"
+  ],
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*"
+  ],
+  "background": {
+    "service_worker": "assets/background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "Open Context Dashboard"
+  },
+  "options_page": "index.html",
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "assets/content.js"
+      ]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "index.html"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ]
+}
